@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehmet Mesut Kurt | Portfolyo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+        }
+        ::selection {
+            background-color: #0d9488;
+            color: white;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold text-center mb-4 text-slate-800;
+        }
+        .section-subtitle {
+            @apply text-lg text-center text-slate-500 mb-12;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            @apply border border-slate-200 rounded-xl shadow-lg p-6 transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 hover:scale-105;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        header.scrolled {
+            @apply shadow-lg;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        header.scrolled nav {
+            @apply py-3;
+        }
+        .tech-tag {
+            @apply inline-block bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-800 text-xs font-semibold mr-2 px-3 py-1 rounded-full border border-teal-200;
+        }
+        .hero-title {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #0d9488, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #0ea5e9 100%);
+        }
+        .skill-bar {
+            background: linear-gradient(90deg, #0d9488, #0891b2);
+            height: 8px;
+            border-radius: 4px;
+            transition: width 1.5s ease-in-out;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(13, 148, 136, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(13, 148, 136, 0.6); }
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .project-card:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navbar -->
+    <header id="main-header" class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-200/80 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center transition-all duration-300">
+            <a href="#" class="text-2xl font-bold text-teal-600 hover:text-teal-700 transition">MMK</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#hakkimda" class="text-slate-600 hover:text-teal-600 transition font-medium relative group">
+                    Hakkımda
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#felsefem" class="text-slate-600 hover:text-teal-600 transition font-medium relative group">
+                    Felsefem
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#projeler" class="text-slate-600 hover:text-teal-600 transition font-medium relative group">
+                    Projeler
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#yetkinlikler" class="text-slate-600 hover:text-teal-600 transition font-medium relative group">
+                    Yetkinlikler
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#iletisim" class="text-slate-600 hover:text-teal-600 transition font-medium relative group">
+                    İletişim
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+            
+            <!-- Desktop CTA Button -->
+            <a href="#iletisim" class="hidden md:block gradient-bg text-white px-6 py-2 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">İletişime Geç</a>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 md:hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-xl font-bold text-teal-600">Menü</span>
+                    <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-slate-100 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="space-y-4">
+                    <a href="#hakkimda" class="block text-lg text-slate-600 hover:text-teal-600 transition py-2">Hakkımda</a>
+                    <a href="#felsefem" class="block text-lg text-slate-600 hover:text-teal-600 transition py-2">Felsefem</a>
+                    <a href="#projeler" class="block text-lg text-slate-600 hover:text-teal-600 transition py-2">Projeler</a>
+                    <a href="#yetkinlikler" class="block text-lg text-slate-600 hover:text-teal-600 transition py-2">Yetkinlikler</a>
+                    <a href="#iletisim" class="block text-lg text-slate-600 hover:text-teal-600 transition py-2">İletişim</a>
+                    <a href="#iletisim" class="block gradient-bg text-white text-center py-3 rounded-lg hover:shadow-lg transition mt-6">İletişime Geç</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50"></div>
+            <div class="absolute top-20 left-10 w-72 h-72 bg-teal-200 rounded-full blur-3xl opacity-30 floating"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyan-200 rounded-full blur-3xl opacity-20 floating" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-200 rounded-full blur-2xl opacity-25 floating" style="animation-delay: 2s;"></div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-3/5 text-center lg:text-left mb-12 lg:mb-0">
+                        <div class="reveal">
+                            <p class="text-lg text-teal-600 font-semibold mb-4 inline-block px-4 py-2 bg-teal-100 rounded-full">
+                                Yönetim Bilişim Sistemleri & Sosyoloji
+                            </p>
+                        </div>
+                        <h1 class="hero-title text-5xl lg:text-7xl font-extrabold leading-tight mb-8 reveal">
+                            MEHMET MESUT KURT
+                        </h1>
+                        <p class="text-xl text-slate-600 max-w-2xl mb-10 reveal">
+                            Ben Mehmet Mesut Kurt. Analitik sistem düşüncesini, toplumsal empati ile birleştirerek hem verimli hem de insan odaklı çözümler üretiyorum.
+                        </p>
+                        <div class="flex flex-wrap gap-4 justify-center lg:justify-start reveal">
+                            <a href="#projeler" class="gradient-bg text-white text-lg font-semibold px-8 py-4 rounded-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 pulse-glow">
+                                Projelerimi Keşfet
+                            </a>
+                            <a href="#iletisim" class="border-2 border-teal-600 text-teal-600 text-lg font-semibold px-8 py-4 rounded-lg hover:bg-teal-600 hover:text-white transition-all duration-300">
+                                İletişime Geç
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-2/5 flex justify-center">
+                        <div class="relative w-96 h-96 reveal">
+                            <!-- Animated Background -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full blur-2xl opacity-30 pulse-glow"></div>
+                            
+                            <!-- Main Visual -->
+                            <div class="relative w-full h-full flex items-center justify-center">
+                                <div class="w-80 h-80 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 flex items-center justify-center">
+                                    <div class="w-64 h-64 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center shadow-2xl">
+                                        <svg class="w-32 h-32 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Floating Elements -->
+                            <div class="absolute top-10 right-10 w-16 h-16 bg-teal-300 rounded-full opacity-60 floating"></div>
+                            <div class="absolute bottom-10 left-10 w-12 h-12 bg-cyan-300 rounded-full opacity-60 floating" style="animation-delay: 1s;"></div>
+                            <div class="absolute top-1/2 left-5 w-8 h-8 bg-blue-300 rounded-full opacity-60 floating" style="animation-delay: 2s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hakkımda Section -->
+        <section id="hakkimda" class="py-20 bg-white/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title reveal">Benim Hikayem</h2>
+                <p class="section-subtitle reveal">İki Farklı Dünyadan Bir Vizyon Doğuyor</p>
+                <div class="max-w-4xl mx-auto text-center text-slate-700 text-lg leading-relaxed reveal">
+                    <p class="mb-4">
+                        Her şey, teknolojinin yapılandırılmış dünyası ile insan toplumunun karmaşık dokusu arasındaki o büyüleyici boşluğu fark etmemle başladı. Selçuk Üniversitesi'nde **Yönetim Bilişim Sistemleri** okurken, verimli sistemler ve algoritmalar tasarlamanın heyecanını keşfettim. Ancak bir sistemin başarısının sadece kodun kalitesine değil, aynı zamanda o sistemi kullanan insanların ihtiyaçlarına, motivasyonlarına ve davranışlarına ne kadar cevap verdiğine bağlı olduğunu gördüm.
+                    </p>
+                    <p>
+                        Bu arayış, beni ikinci bir akademik yolculuğa, İstanbul Üniversitesi'nin **Sosyoloji** bölümüne yönlendirdi. Burada, toplumsal yapıların, kültürel normların ve insan etkileşimlerinin birey ve teknoloji üzerindeki derin etkilerini analiz etme fırsatı buldum. Artık benim için bir yazılım projesi, sadece bir ürün değil; aynı zamanda bir toplumsal etkileşim alanıydı. Bu iki disiplin, benim profesyonel felsefemin temelini oluşturdu.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Felsefem Section -->
+        <section id="felsefem" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title reveal">Profesyonel Felsefem</h2>
+                <p class="section-subtitle reveal">Yaptığım her işe rehberlik eden temel ilkelerim.</p>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="card reveal flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <svg class="h-12 w-12 text-teal-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-2">İnsan Odaklı Teknoloji</h3>
+                            <p class="text-slate-600">
+                                Geliştirdiğim her sistemin merkezinde insan vardır. Teknolojiyi, hayatı kolaylaştıran, verimliliği artıran ve kullanıcıya güç veren bir araç olarak görüyorum. Başarılı bir yazılım, sadece çalışan değil, aynı zamanda anlaşılan ve sevilen yazılımdır.
+                            </p>
+                        </div>
+                    </div>
+                     <div class="card reveal flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <svg class="h-12 w-12 text-teal-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-2">Veri Odaklı Empati</h3>
+                            <p class="text-slate-600">
+                                Veriler, sadece rakamlar ve grafikler değildir; arkasında insan hikayeleri barındırır. Sosyolojik bakış açımla, verileri analiz ederek kullanıcı davranışlarını ve ihtiyaçlarını daha derin bir seviyede anlıyor, bu sayede daha isabetli ve empatik çözümler üretiyorum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projeler Section -->
+        <section id="projeler" class="py-20 bg-white/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title reveal">Projelerim</h2>
+                <p class="section-subtitle reveal">Felsefemi pratiğe döktüğüm çalışmalar.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="card project-card reveal flex flex-col group">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">Kitap Otomasyonu</h3>
+                                <p class="text-sm text-slate-500">C# Desktop Application</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-4 flex-grow">
+                            Windows Forms ve SQLite veritabanı kullanarak geliştirdiğim bu masaüstü uygulaması, kitapların eklenmesine, silinmesine, güncellenmesine ve aranmasına olanak tanır.
+                        </p>
+                        <div class="bg-slate-50 rounded-lg p-4 mb-4">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-4 h-4 text-teal-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="font-semibold text-slate-700">Ne Öğrendim?</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Veritabanı tasarımı, olay tabanlı programlama ve kullanıcı arayüzü yönetimi konularında pratik deneyim kazandım.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200">
+                            <div class="mb-4">
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">.NET</span>
+                                <span class="tech-tag">SQLite</span>
+                                <span class="tech-tag">Windows Forms</span>
+                            </div>
+                            <a href="#" class="text-teal-600 font-semibold hover:underline flex items-center group">
+                                GitHub'da Görüntüle 
+                                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="card project-card reveal flex flex-col group">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900">Portfolyo Web Sitesi</h3>
+                                <p class="text-sm text-slate-500">Modern Web Application</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 mb-4 flex-grow">
+                           Modern ve mobil uyumlu olarak tasarladığım bu kişisel portfolyo sitesi, profesyonel kimliğimi sergilemek için dinamik bir arayüz sunar.
+                        </p>
+                        <div class="bg-slate-50 rounded-lg p-4 mb-4">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-4 h-4 text-teal-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="font-semibold text-slate-700">Ne Öğrendim?</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Tailwind CSS ile hızlı prototipleme, responsive tasarım ilkeleri ve modern JavaScript (DOM Manipulation) konularında yetkinliğimi artırdım.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200">
+                            <div class="mb-4">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive Design</span>
+                            </div>
+                            <a href="#" class="text-teal-600 font-semibold hover:underline flex items-center group">
+                                GitHub'da Görüntüle 
+                                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 - Coming Soon -->
+                    <div class="card border-2 border-dashed border-slate-300 flex items-center justify-center reveal group hover:border-teal-400 hover:bg-teal-50 transition-all duration-300">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-teal-100 transition-colors">
+                                <svg class="w-8 h-8 text-slate-400 group-hover:text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                </svg>
+                            </div>
+                            <p class="text-slate-500 font-medium">Yeni Proje</p>
+                            <p class="text-sm text-slate-400">Yakında burada olacak</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Yetkinlikler Section -->
+        <section id="yetkinlikler" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title reveal">Teknik Yetkinliklerim</h2>
+                <p class="section-subtitle reveal">Sürekli gelişim odaklı yetkinlik haritam.</p>
+                
+                <!-- Skills Grid -->
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <!-- Technical Skills -->
+                    <div class="reveal">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8 flex items-center">
+                            <svg class="w-8 h-8 text-teal-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                            </svg>
+                            Teknik Yetenekler
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">C# & .NET</span>
+                                    <span class="text-sm text-slate-500">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">Web Development</span>
+                                    <span class="text-sm text-slate-500">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">Database Design</span>
+                                    <span class="text-sm text-slate-500">75%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">Python</span>
+                                    <span class="text-sm text-slate-500">70%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Soft Skills -->
+                    <div class="reveal">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8 flex items-center">
+                            <svg class="w-8 h-8 text-teal-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            Sosyal Yetenekler
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">Sosyolojik Analiz</span>
+                                    <span class="text-sm text-slate-500">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">İnsan Kaynakları</span>
+                                    <span class="text-sm text-slate-500">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">Veri Yorumlama</span>
+                                    <span class="text-sm text-slate-500">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold text-slate-700">Proje Yönetimi</span>
+                                    <span class="text-sm text-slate-500">75%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="skill-bar rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Technology Tags -->
+                <div class="mt-16 reveal">
+                    <h3 class="text-2xl font-bold text-slate-900 text-center mb-8">Kullandığım Teknolojiler</h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <span class="tech-tag text-sm px-4 py-2">C#</span>
+                        <span class="tech-tag text-sm px-4 py-2">.NET Framework</span>
+                        <span class="tech-tag text-sm px-4 py-2">Python</span>
+                        <span class="tech-tag text-sm px-4 py-2">HTML5</span>
+                        <span class="tech-tag text-sm px-4 py-2">CSS3</span>
+                        <span class="tech-tag text-sm px-4 py-2">JavaScript</span>
+                        <span class="tech-tag text-sm px-4 py-2">Tailwind CSS</span>
+                        <span class="tech-tag text-sm px-4 py-2">SQL</span>
+                        <span class="tech-tag text-sm px-4 py-2">SQLite</span>
+                        <span class="tech-tag text-sm px-4 py-2">Entity Framework</span>
+                        <span class="tech-tag text-sm px-4 py-2">Windows Forms</span>
+                        <span class="tech-tag text-sm px-4 py-2">Git</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İletişim Section -->
+        <section id="iletisim" class="py-20 bg-white/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title reveal">İletişime Geçin</h2>
+                <p class="section-subtitle reveal">Birlikte harika projeler yaratmak için benimle iletişime geçin.</p>
+                
+                <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <!-- Contact Info -->
+                    <div class="reveal">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8">Benimle İletişime Geçin</h3>
+                        <p class="text-slate-700 text-lg mb-8">
+                            Yazılım, insan kaynakları veya bu iki alanın kesiştiği projeler hakkında konuşmak isterseniz, bana aşağıdaki kanallardan doğrudan ulaşabilirsiniz.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <!-- Email -->
+                            <a href="mailto:mesutkurt914@gmail.com" class="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group">
+                                <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors">
+                                    <svg class="w-6 h-6 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900">E-posta</h4>
+                                    <p class="text-slate-600">mesutkurt914@gmail.com</p>
+                                </div>
+                            </a>
+                            
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/in/mehmet-mesut-kurt-275775251" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900">LinkedIn</h4>
+                                    <p class="text-slate-600">Profesyonel Profil</p>
+                                </div>
+                            </a>
+                            
+                            <!-- GitHub -->
+                            <a href="#" class="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group">
+                                <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-slate-200 transition-colors">
+                                    <svg class="w-6 h-6 text-slate-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900">GitHub</h4>
+                                    <p class="text-slate-600">Projelerim ve Kodlarım</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="reveal">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8">Mesaj Gönderin</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Ad Soyad</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors" placeholder="Adınız ve soyadınız">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">E-posta</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors" placeholder="ornek@email.com">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-semibold text-slate-700 mb-2">Konu</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors" placeholder="Mesajınızın konusu">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">Mesaj</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors" placeholder="Mesajınızı buraya yazın..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full gradient-bg text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                Mesaj Gönder
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200">
+        <div class="container mx-auto px-6 py-6 text-center text-slate-500">
+            <p>&copy; 2025 Mehmet Mesut Kurt. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kaydırma ile animasyonları tetikleme
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        
+                        // Skill bar animasyonu
+                        if (entry.target.classList.contains('skill-item')) {
+                            const skillBar = entry.target.querySelector('.skill-bar');
+                            if (skillBar) {
+                                const width = skillBar.style.width;
+                                skillBar.style.width = '0%';
+                                setTimeout(() => {
+                                    skillBar.style.width = width;
+                                }, 200);
+                            }
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(elem => {
+                observer.observe(elem);
+            });
+
+            // Kaydırma ile header'ı değiştirme
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close mobile menu when clicking on links
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Form submission
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(this);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const subject = formData.get('subject');
+                    const message = formData.get('message');
+                    
+                    // Create mailto link
+                    const mailtoLink = `mailto:mesutkurt914@gmail.com?subject=${encodeURIComponent(subject || 'Portfolyo İletişim')}&body=${encodeURIComponent(
+                        `Ad Soyad: ${name}\nE-posta: ${email}\n\nMesaj:\n${message}`
+                    )}`;
+                    
+                    // Open email client
+                    window.location.href = mailtoLink;
+                });
+            }
+
+            // Add typing effect to hero title
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                const text = heroTitle.textContent;
+                heroTitle.textContent = '';
+                let i = 0;
+                
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        heroTitle.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                
+                // Start typing effect after a delay
+                setTimeout(typeWriter, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
